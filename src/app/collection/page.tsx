@@ -7,22 +7,16 @@ import { useEffect, useState } from "react";
 const catalogueBaseUrl = "https://assets.zicassoart.com/catalogues";
 
 const cataloguePages = [
-  "Front pagecatalogue.jpg",
-  "A Lovely Morning.jpg",
-  "Fruits Of The Bikurim.jpg",
-  "Krias Yam Suf.jpg",
-  "Prayers at the koisel (2).jpg",
-  "Snowy Koisel .jpg",
-  "The Moment Of Candlelighting.jpg",
-  "The Smell Of Sunflowers.jpg",
-  "The light of Our life (2).jpg",
-  "Vintage airballoon.jpg",
-  "torah Hu Chayeinu.jpg",
-  "portrait.jpg",
-  "Price Page.jpg",
-  "Back page.jpg",
-].map((filename) => ({
-  title: filename.replace(/\.(jpg|png)$/i, ""),
+  "cataloguedivider.jpg",
+  "cataloguedivider2.jpg",
+  "cataloguedivider3.jpg",
+  "cataloguedivider4.jpg",
+  "cataloguedivider5.jpg",
+  "cataloguedivider8.jpg",
+  "cataloguedivider9.jpg",
+  "cataloguedivider10.jpg",
+].map((filename, index) => ({
+  title: `Spread ${(index + 1).toString().padStart(2, "0")}`,
   src: `${catalogueBaseUrl}/${encodeURIComponent(filename)}`,
 }));
 
@@ -124,11 +118,11 @@ export default function CollectionPage() {
         </div>
       </header>
 
-      <section className="relative flex min-h-[calc(100vh-5.5rem)] flex-col items-center justify-center px-5 py-8 sm:px-9 lg:px-[6.5rem]">
+      <section className="collection-atmosphere relative flex min-h-[calc(100vh-5.5rem)] flex-col items-center justify-center px-1 py-2 sm:px-4 lg:px-10">
         <button
           type="button"
           onClick={previousPage}
-          className="absolute left-5 top-1/2 z-10 flex h-16 w-16 -translate-y-1/2 items-center justify-center text-[#5b3f2a] transition-opacity hover:opacity-65 sm:left-8 lg:left-[3.5rem]"
+          className="fixed left-1 top-1/2 z-30 flex h-16 w-12 -translate-y-1/2 items-center justify-center text-[#5b3f2a] transition-opacity hover:opacity-60 sm:left-2 lg:left-3"
           aria-label="Previous page"
         >
           <ArrowIcon direction="left" />
@@ -137,20 +131,21 @@ export default function CollectionPage() {
         <button
           type="button"
           onClick={nextPage}
-          className="absolute right-5 top-1/2 z-10 flex h-16 w-16 -translate-y-1/2 items-center justify-center text-[#5b3f2a] transition-opacity hover:opacity-65 sm:right-8 lg:right-[3.5rem]"
+          className="fixed right-1 top-1/2 z-30 flex h-16 w-12 -translate-y-1/2 items-center justify-center text-[#5b3f2a] transition-opacity hover:opacity-60 sm:right-2 lg:right-3"
           aria-label="Next page"
         >
           <ArrowIcon direction="right" />
         </button>
 
-        <div className="group relative h-[min(84vh,880px)] w-[min(92vw,1580px)]">
+        <div className="group relative h-[min(78vh,840px)] w-[min(99vw,1880px)]">
           <Image
+            key={activePage.src}
             src={activePage.src}
             alt={`${activePage.title} catalogue page`}
             fill
             priority={currentPage === 1}
-            sizes="92vw"
-            className="object-contain drop-shadow-[0_30px_58px_rgba(74,52,35,0.22)]"
+            sizes="99vw"
+            className="catalogue-page-image scale-[1.28] object-contain drop-shadow-[0_30px_58px_rgba(74,52,35,0.22)]"
           />
           <button
             type="button"
@@ -166,9 +161,28 @@ export default function CollectionPage() {
           </button>
         </div>
 
-        <p className="mt-7 text-center font-serif text-2xl text-[#65472f]">
-          {currentPage.toString().padStart(2, "0")} / {totalPages.toString().padStart(2, "0")}
-        </p>
+        <div className="mt-10 w-[min(70vw,760px)] text-center">
+          <div className="mx-auto mb-2 h-px overflow-hidden bg-[#9f8c7b]/34">
+            <div
+              className="h-full bg-[#8a5b35] transition-all duration-500 ease-out"
+              style={{ width: `${(currentPage / totalPages) * 100}%` }}
+            />
+          </div>
+
+          <p className="text-[0.68rem] uppercase tracking-[0.24em] text-[#8a5b35]">
+            Catalogue Page
+          </p>
+          <div className="mt-2 flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-5">
+            <h1 className="font-serif text-2xl leading-tight text-[#543824]">
+              {activePage.title}
+            </h1>
+            <span className="hidden h-4 w-px bg-[#9f8c7b]/45 sm:block" aria-hidden="true" />
+            <p className="font-serif text-xl text-[#65472f]">
+              {currentPage.toString().padStart(2, "0")} /{" "}
+              {totalPages.toString().padStart(2, "0")}
+            </p>
+          </div>
+        </div>
       </section>
 
       {isZoomed ? (
@@ -209,9 +223,9 @@ export default function CollectionPage() {
             </button>
           </div>
 
-          <div className="h-full overflow-auto px-6 pb-10 pt-24">
+          <div className="flex h-full overflow-auto px-6 pb-10 pt-24">
             <div
-              className="relative mx-auto"
+              className="relative m-auto shrink-0"
               style={{
                 height: `${92 * zoomLevel}vh`,
                 width: `${96 * zoomLevel}vw`,

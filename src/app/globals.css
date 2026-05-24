@@ -77,6 +77,40 @@ body {
   animation: shadow-drift 14s ease-in-out infinite alternate;
 }
 
+.collection-atmosphere {
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255, 250, 245, 0.72), transparent 34%),
+    radial-gradient(circle at 12% 62%, rgba(146, 112, 82, 0.16), transparent 28%),
+    radial-gradient(circle at 88% 58%, rgba(255, 255, 255, 0.34), transparent 25%),
+    linear-gradient(115deg, #eaded1 0%, #f4ebe2 48%, #ded0c2 100%);
+}
+
+.collection-atmosphere::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(74, 52, 35, 0.07), transparent 16%, transparent 84%, rgba(74, 52, 35, 0.07)),
+    radial-gradient(ellipse at center, transparent 48%, rgba(74, 52, 35, 0.1));
+}
+
+.catalogue-page-image {
+  animation: catalogue-page-arrive 520ms ease-out both;
+}
+
+@keyframes catalogue-page-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.992);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @keyframes hero-breathe {
   from {
     transform: translate3d(0, 0, 0) scale(1);

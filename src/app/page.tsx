@@ -60,7 +60,7 @@ export default function Home() {
               Timeless. Sacred. Elevated.
             </p>
             <h1 className="font-serif text-5xl leading-[1.08] tracking-tight sm:text-6xl">
-              A peice of art for the finishing touch.
+              A piece of art for the finishing touch.
             </h1>
             <p className="mt-7 max-w-[390px] text-base leading-7 text-[var(--ink)]/78">
               Discover original paintings that bring beauty, meaning, and timeless inspiration
