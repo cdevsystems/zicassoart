@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: "assets.zicassoart.com",
         pathname: "/paintings/**",
       },
+      {
+        protocol: "https",
+        hostname: "assets.zicassoart.com",
+        pathname: "/catalogues/**",
+      },
     ],
   },
 };

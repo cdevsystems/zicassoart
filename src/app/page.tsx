@@ -5,7 +5,6 @@ import { heroPaintingSlides, paintings } from "@/lib/art-content";
 const navItems = [
   { label: "Collection", href: "/collection" },
   { label: "About", href: "/about" },
-  { label: "Catalogue", href: "/catalogue" },
   { label: "Custom Orders", href: "/custom-orders" },
   { label: "Contact", href: "/contact" },
 ];
@@ -35,7 +34,7 @@ export default function Home() {
             </span>
           </a>
 
-          <nav className="hidden items-center gap-12 text-[0.72rem] uppercase tracking-[0.22em] lg:flex">
+          <nav className="hidden items-center gap-16 text-[0.82rem] uppercase tracking-[0.2em] lg:flex xl:gap-20">
             {navItems.map((item) => (
               <a key={item.href} href={item.href} className="transition-colors hover:text-white/70">
                 {item.label}
@@ -68,7 +67,7 @@ export default function Home() {
               into your space.
             </p>
             <a
-              href="/catalogue"
+              href="/collection"
               className="mt-10 inline-flex h-[3.25rem] min-w-[260px] items-center justify-center gap-8 border border-[var(--gold)] px-8 text-[0.72rem] uppercase tracking-[0.18em] text-[var(--ink)] transition-colors hover:bg-[var(--gold)] hover:text-white"
             >
               <span>Explore Collection</span>
@@ -116,7 +115,7 @@ export default function Home() {
 
           <div className="mt-10 flex justify-center">
             <a
-              href="/catalogue"
+              href="/collection"
               className="inline-flex h-[3.25rem] min-w-[260px] items-center justify-center gap-8 border border-[var(--gold)] px-8 text-[0.72rem] uppercase tracking-[0.18em]"
             >
               <span>View All Artworks</span>

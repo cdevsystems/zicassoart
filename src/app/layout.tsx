@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Zahavah Fine Art",
-  description: "A cinematic catalogue for collectible Judaica paintings.",
+  description: "A cinematic collection of collectible Judaica paintings.",
 };
 
 export default function RootLayout({
