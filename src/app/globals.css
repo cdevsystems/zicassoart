@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fcf9f4;
+  --foreground: #161310;
+  --ivory: #fcf9f4;
+  --cream: #f3eadf;
+  --stone: #b0a094;
+  --gold: #a66f2b;
+  --ink: #161310;
+  --midnight: #181827;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.font-serif {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.hero-atmosphere {
+  background:
+    radial-gradient(circle at 31% 40%, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.12) 27%, transparent 46%),
+    radial-gradient(circle at 82% 42%, rgba(150, 126, 105, 0.34), transparent 34%),
+    linear-gradient(112deg, #eee2d4 0%, #d9caba 47%, #efe6db 100%);
+}
+
+.hero-glow {
+  position: absolute;
+  pointer-events: none;
+  filter: blur(6px);
+}
+
+.hero-glow-left {
+  left: -16vw;
+  top: 3rem;
+  width: 58vw;
+  height: 82%;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.36), transparent 67%);
+  animation: hero-breathe 9s ease-in-out infinite alternate;
+}
+
+.hero-glow-right {
+  right: -10vw;
+  bottom: -14rem;
+  width: 44vw;
+  height: 72%;
+  background: radial-gradient(ellipse at center, rgba(130, 105, 85, 0.32), transparent 68%);
+  animation: hero-breathe 12s ease-in-out infinite alternate-reverse;
+}
+
+.hero-shadow-leaf {
+  position: absolute;
+  right: -7vw;
+  top: 5rem;
+  width: 34vw;
+  height: 82%;
+  pointer-events: none;
+  opacity: 0.22;
+  background:
+    radial-gradient(ellipse at 64% 22%, rgba(89, 73, 54, 0.18) 0 7%, transparent 8%),
+    radial-gradient(ellipse at 70% 34%, rgba(89, 73, 54, 0.14) 0 6%, transparent 7%),
+    radial-gradient(ellipse at 58% 48%, rgba(89, 73, 54, 0.13) 0 5%, transparent 6%),
+    linear-gradient(107deg, transparent 0 54%, rgba(89, 73, 54, 0.12) 55%, transparent 56%);
+  filter: blur(10px);
+  transform: rotate(-12deg);
+  animation: shadow-drift 14s ease-in-out infinite alternate;
+}
+
+@keyframes hero-breathe {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(1.6rem, -0.7rem, 0) scale(1.04);
+  }
+}
+
+@keyframes shadow-drift {
+  from {
+    transform: translate3d(0, 0, 0) rotate(-12deg);
+  }
+
+  to {
+    transform: translate3d(-1.4rem, 0.8rem, 0) rotate(-10deg);
+  }
+}
+
+.icon-button {
+  position: relative;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  color: currentColor;
+  transition: opacity 180ms ease;
+}
+
+.icon-button:hover {
+  opacity: 0.7;
+}
+
+.icon-button::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1.4px solid currentColor;
+  border-radius: 999px;
+}
+
+.icon-button::after {
+  content: "";
+  position: absolute;
+  right: 1px;
+  bottom: 2px;
+  width: 7px;
+  height: 1.4px;
+  background: currentColor;
+  transform: rotate(45deg);
+  transform-origin: center;
+}
+
+.icon-button-user::before {
+  inset: 3px 6px 10px;
+}
+
+.icon-button-user::after {
+  left: 3px;
+  right: 3px;
+  bottom: 2px;
+  width: auto;
+  height: 9px;
+  border: 1.4px solid currentColor;
+  border-top-left-radius: 999px;
+  border-top-right-radius: 999px;
+  background: transparent;
+  transform: none;
+}
+
+.icon-button-bag::before {
+  inset: 6px 4px 2px;
+  border-radius: 0;
+}
+
+.icon-button-bag::after {
+  left: 7px;
+  right: auto;
+  bottom: auto;
+  top: 2px;
+  width: 8px;
+  height: 7px;
+  border: 1.4px solid currentColor;
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+  background: transparent;
+  transform: none;
+}
