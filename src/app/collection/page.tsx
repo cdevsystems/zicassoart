@@ -137,15 +137,15 @@ export default function CollectionPage() {
           <ArrowIcon direction="right" />
         </button>
 
-        <div className="group relative h-[min(78vh,840px)] w-[min(99vw,1880px)]">
+        <div className="group relative aspect-[2.35/1] w-[min(96vw,1760px)]">
           <Image
             key={activePage.src}
             src={activePage.src}
             alt={`${activePage.title} catalogue page`}
             fill
             priority={currentPage === 1}
-            sizes="99vw"
-            className="catalogue-page-image scale-[1.28] object-contain drop-shadow-[0_30px_58px_rgba(74,52,35,0.22)]"
+            sizes="96vw"
+            className="catalogue-page-image object-contain drop-shadow-[0_30px_58px_rgba(74,52,35,0.22)]"
           />
           <button
             type="button"
