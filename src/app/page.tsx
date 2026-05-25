@@ -16,6 +16,13 @@ const featuredPaintingGroups = [
   [...paintings.slice(9), paintings[0]],
 ];
 
+const featuredArtworkFrames = [
+  "h-[250px] w-[260px]",
+  "h-[260px] w-[240px]",
+  "h-[255px] w-[250px]",
+  "h-[220px] w-[330px]",
+];
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[var(--ivory)] text-[var(--ink)]">
@@ -97,17 +104,26 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-4">
+          <div className="flex flex-wrap items-end justify-center gap-x-20 gap-y-12">
             {featuredPaintingGroups.map((group, index) => {
               const slides = group.flatMap((item) => item.images);
 
               return (
-                <article key={group.map((item) => item.slug).join("-")} className="group">
-                <ElegantSlideshow
-                  className="h-[230px] transition-transform duration-500 group-hover:-translate-y-1"
-                  slides={slides}
-                  interval={5400 + index * 450}
-                />
+                <article
+                  key={group.map((item) => item.slug).join("-")}
+                  className="group flex min-h-[290px] shrink-0 items-end justify-center"
+                >
+                  <div className="relative flex h-full items-end justify-center">
+                    <ElegantSlideshow
+                      className={`${featuredArtworkFrames[index]} max-w-full transition duration-500 ease-out group-hover:-translate-y-2 group-hover:drop-shadow-[0_18px_26px_rgba(74,52,35,0.12)]`}
+                      slides={slides}
+                      interval={5400 + index * 450}
+                    />
+                    <span
+                      className="absolute -bottom-5 left-1/2 h-px w-20 -translate-x-1/2 bg-[var(--gold)]/35 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                      aria-hidden="true"
+                    />
+                  </div>
                 </article>
               );
             })}
