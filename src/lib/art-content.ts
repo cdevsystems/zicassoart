@@ -19,6 +19,9 @@ export type CatalogSpread = {
   pageImages: string[];
 };
 
+const paintingAssetBaseUrl = "https://assets.zicassoart.com/paintings";
+const topHeroAssetBaseUrl = "https://assets.zicassoart.com/Top hero paintings";
+
 export const paintings: Painting[] = [
   {
     slug: "prayers-at-the-koisel",
@@ -29,7 +32,7 @@ export const paintings: Painting[] = [
       {
         id: "prayers-at-the-koisel",
         alt: "Prayers At The Koisel painting",
-        src: "https://assets.zicassoart.com/paintings/Prayers%20At%20The%20koisel.webp",
+        src: `${paintingAssetBaseUrl}/paintings.jpg`,
       },
     ],
   },
@@ -42,7 +45,7 @@ export const paintings: Painting[] = [
       {
         id: "a-lovely-morning",
         alt: "A Lovely Morning painting",
-        src: "https://assets.zicassoart.com/paintings/A%20Lovely%20Morning.webp",
+        src: `${paintingAssetBaseUrl}/paintings2.jpg`,
       },
     ],
   },
@@ -55,7 +58,7 @@ export const paintings: Painting[] = [
       {
         id: "blowing-of-the-shofor",
         alt: "Blowing Of The Shofor painting",
-        src: "https://assets.zicassoart.com/paintings/Blowing%20Of%20The%20Shofor.webp",
+        src: `${paintingAssetBaseUrl}/paintings3.jpg`,
       },
     ],
   },
@@ -68,7 +71,7 @@ export const paintings: Painting[] = [
       {
         id: "the-fruits-of-bikurim",
         alt: "The Fruits Of Bikurim painting",
-        src: "https://assets.zicassoart.com/paintings/The%20Fruits%20Of%20Bikurim.webp",
+        src: `${paintingAssetBaseUrl}/paintings5.jpg`,
       },
     ],
   },
@@ -81,7 +84,7 @@ export const paintings: Painting[] = [
       {
         id: "the-smell-of-sunflowers",
         alt: "The Smell Of Sunflowers painting",
-        src: "https://assets.zicassoart.com/paintings/The%20Smell%20Of%20Sunflowers.webp",
+        src: `${paintingAssetBaseUrl}/paintings6.jpg`,
       },
     ],
   },
@@ -94,7 +97,7 @@ export const paintings: Painting[] = [
       {
         id: "yerusalem-we-are-waiting-for",
         alt: "The Yerusalem We Are Waiting For painting",
-        src: "https://assets.zicassoart.com/paintings/The%20yerusalem%20we%20are%20waiting%20for%20.webp",
+        src: `${paintingAssetBaseUrl}/paintings7.jpg`,
       },
     ],
   },
@@ -107,7 +110,7 @@ export const paintings: Painting[] = [
       {
         id: "torah-hu-chayeinu",
         alt: "Torah Hu Chayeinu painting",
-        src: "https://assets.zicassoart.com/paintings/Torah%20Hu%20Chayeinu.webp",
+        src: `${paintingAssetBaseUrl}/paintings8.jpg`,
       },
     ],
   },
@@ -120,7 +123,7 @@ export const paintings: Painting[] = [
       {
         id: "vintage-airballoon",
         alt: "Vintage Airballoon painting",
-        src: "https://assets.zicassoart.com/paintings/Vintage%20Airballoon.webp",
+        src: `${paintingAssetBaseUrl}/paintings9.jpg`,
       },
     ],
   },
@@ -133,7 +136,7 @@ export const paintings: Painting[] = [
       {
         id: "mount-sinai-good",
         alt: "Mount Sinai Good painting",
-        src: "https://assets.zicassoart.com/paintings/mount%20sinai%20good%20.webp",
+        src: `${paintingAssetBaseUrl}/paintings11.jpg`,
       },
     ],
   },
@@ -146,7 +149,7 @@ export const paintings: Painting[] = [
       {
         id: "portrait",
         alt: "Portrait painting",
-        src: "https://assets.zicassoart.com/paintings/portrait.webp",
+        src: `${paintingAssetBaseUrl}/paintings12.jpg`,
       },
     ],
   },
@@ -159,18 +162,59 @@ export const paintings: Painting[] = [
       {
         id: "the-light-of-our-life",
         alt: "The Light Of Our Life painting",
-        src: "https://assets.zicassoart.com/paintings/the%20light%20of%20our%20life.webp",
+        src: `${paintingAssetBaseUrl}/paintings13.jpg`,
+      },
+    ],
+  },
+  {
+    slug: "still-life-study",
+    title: "Still Life Study",
+    dimensions: "",
+    price: "",
+    images: [
+      {
+        id: "still-life-study",
+        alt: "Still Life Study painting",
+        src: `${paintingAssetBaseUrl}/paintings14.jpg`,
+      },
+    ],
+  },
+  {
+    slug: "untitled-1",
+    title: "Untitled 1",
+    dimensions: "",
+    price: "",
+    images: [
+      {
+        id: "untitled-1",
+        alt: "Untitled 1 painting",
+        src: `${paintingAssetBaseUrl}/Untitled-1.jpg`,
       },
     ],
   },
 ];
 
-export const heroPaintingSlides = paintings.flatMap((painting) =>
-  painting.images.map((image) => ({
-    ...image,
-    title: painting.title,
-  })),
-);
+export const heroPaintingSlides = [
+  "top hero paintings.jpg",
+  "top hero paintings2.jpg",
+  "top hero paintings3.jpg",
+  "top hero paintings4.jpg",
+  "top hero paintings5.jpg",
+  "top hero paintings6.jpg",
+  "top hero paintings7.jpg",
+  "top hero paintings8.jpg",
+  "top hero paintings9.jpg",
+  "top hero paintings10.jpg",
+  "top hero paintings11.jpg",
+  "top hero paintings12.jpg",
+  "top hero paintings13.jpg",
+  "top hero paintings14.jpg",
+].map((filename, index) => ({
+  id: `top-hero-painting-${index + 1}`,
+  alt: `Featured hero painting ${index + 1}`,
+  src: `${topHeroAssetBaseUrl}/${encodeURIComponent(filename)}`,
+  title: `Featured hero painting ${index + 1}`,
+}));
 
 export const catalogSpreads: CatalogSpread[] = [
   {

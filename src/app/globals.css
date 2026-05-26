@@ -31,8 +31,8 @@ body {
 .hero-atmosphere {
   background:
     radial-gradient(circle at 31% 40%, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.12) 27%, transparent 46%),
-    radial-gradient(circle at 82% 42%, rgba(150, 126, 105, 0.34), transparent 34%),
-    linear-gradient(112deg, #eee2d4 0%, #d9caba 47%, #efe6db 100%);
+    radial-gradient(circle at 82% 42%, rgba(98, 76, 61, 0.56), transparent 38%),
+    linear-gradient(112deg, #eee2d4 0%, #d9caba 44%, #c3ad9a 100%);
 }
 
 .hero-glow {
@@ -97,6 +97,11 @@ body {
 
 .catalogue-page-image {
   animation: catalogue-page-arrive 520ms ease-out both;
+}
+
+.featured-artwork-feather {
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 58%, rgba(0, 0, 0, 0.82) 74%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, #000 58%, rgba(0, 0, 0, 0.82) 74%, transparent 100%);
 }
 
 @keyframes catalogue-page-arrive {

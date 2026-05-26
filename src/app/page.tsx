@@ -17,10 +17,10 @@ const featuredPaintingGroups = [
 ];
 
 const featuredArtworkFrames = [
-  "h-[250px] w-[260px]",
-  "h-[260px] w-[240px]",
-  "h-[255px] w-[250px]",
-  "h-[220px] w-[330px]",
+  "h-[270px] w-[275px]",
+  "h-[270px] w-[275px]",
+  "h-[270px] w-[295px]",
+  "h-[270px] w-[275px]",
 ];
 
 export default function Home() {
@@ -61,8 +61,16 @@ export default function Home() {
         <div className="hero-glow hero-glow-left" aria-hidden="true" />
         <div className="hero-glow hero-glow-right" aria-hidden="true" />
         <div className="hero-shadow-leaf" aria-hidden="true" />
+        <div className="absolute inset-y-0 right-0 hidden w-[62vw] overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,black_22%,black_100%)] lg:block">
+          <ElegantSlideshow
+            className="relative h-full min-h-[660px] w-full"
+            imageClassName="object-cover object-[72%_center]"
+            slides={heroPaintingSlides}
+            interval={6200}
+          />
+        </div>
         <div className="mx-auto grid min-h-[660px] max-w-[1640px] items-center gap-12 px-6 py-16 sm:px-10 lg:grid-cols-[0.82fr_1.18fr] lg:px-[4.5rem] lg:py-0">
-          <div className="relative max-w-[430px]">
+          <div className="relative z-10 max-w-[430px]">
             <p className="mb-8 text-[0.76rem] uppercase tracking-[0.24em] text-[var(--gold)]">
               Timeless. Sacred. Elevated.
             </p>
@@ -82,10 +90,11 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="relative grid min-h-[480px] place-items-center overflow-hidden">
+          <div className="relative grid min-h-[480px] place-items-center overflow-hidden lg:hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.5),transparent_48%)]" />
             <ElegantSlideshow
               className="relative h-[min(50vw,500px)] min-h-[360px] w-full max-w-[760px] drop-shadow-[0_34px_48px_rgba(74,52,35,0.18)]"
+              imageClassName="object-cover object-center"
               slides={heroPaintingSlides}
               interval={6200}
             />
@@ -104,7 +113,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="flex flex-wrap items-end justify-center gap-x-20 gap-y-12">
+          <div className="flex flex-wrap items-end justify-center gap-x-12 gap-y-12 xl:flex-nowrap 2xl:gap-x-16">
             {featuredPaintingGroups.map((group, index) => {
               const slides = group.flatMap((item) => item.images);
 
@@ -115,7 +124,7 @@ export default function Home() {
                 >
                   <div className="relative flex h-full items-end justify-center">
                     <ElegantSlideshow
-                      className={`${featuredArtworkFrames[index]} max-w-full transition duration-500 ease-out group-hover:-translate-y-2 group-hover:drop-shadow-[0_18px_26px_rgba(74,52,35,0.12)]`}
+                      className={`${featuredArtworkFrames[index]} featured-artwork-feather max-w-full transition duration-500 ease-out group-hover:-translate-y-2 group-hover:drop-shadow-[0_18px_26px_rgba(74,52,35,0.12)]`}
                       slides={slides}
                       interval={5400 + index * 450}
                     />

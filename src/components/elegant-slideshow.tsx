@@ -7,12 +7,14 @@ import type { PaintingImage } from "@/lib/art-content";
 type ElegantSlideshowProps = {
   slides: Array<PaintingImage & { title?: string }>;
   className?: string;
+  imageClassName?: string;
   interval?: number;
 };
 
 export function ElegantSlideshow({
   slides,
   className = "",
+  imageClassName = "object-contain",
   interval = 5200,
 }: ElegantSlideshowProps) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -52,7 +54,7 @@ export function ElegantSlideshow({
               fill
               unoptimized
               sizes="(min-width: 1280px) 42vw, (min-width: 768px) 48vw, 92vw"
-              className="object-contain"
+              className={imageClassName}
             />
           ) : null}
         </div>
