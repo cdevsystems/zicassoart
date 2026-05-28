@@ -20,7 +20,7 @@ export type CatalogSpread = {
 };
 
 const paintingAssetBaseUrl = "https://assets.zicassoart.com/paintings";
-const topHeroAssetBaseUrl = "https://assets.zicassoart.com/Top%20hero%20paintings";
+const topHeroAssetBaseUrl = "https://assets.zicassoart.com/top%20hero%20final%20webp";
 
 export const paintings: Painting[] = [
   {
@@ -195,21 +195,21 @@ export const paintings: Painting[] = [
 ];
 
 export const heroPaintingSlides = [
-  "final top hero.jpg",
-  "final top hero2.jpg",
-  "final top hero3.jpg",
-  "final top hero4.jpg",
-  "final top hero5.jpg",
-  "final top hero6.jpg",
-  "final top hero7.jpg",
-  "final top hero8.jpg",
-  "final top hero9.jpg",
-  "final top hero10.jpg",
-  "final top hero11.jpg",
-  "final top hero12.jpg",
-  "final top hero13.jpg",
-  "final top hero14.jpg",
-  "final top hero15.jpg",
+  "final top hero.webp",
+  "final top hero2.webp",
+  "final top hero3.webp",
+  "final top hero4.webp",
+  "final top hero5.webp",
+  "final top hero6.webp",
+  "final top hero7.webp",
+  "final top hero8.webp",
+  "final top hero9.webp",
+  "final top hero10.webp",
+  "final top hero11.webp",
+  "final top hero12.webp",
+  "final top hero13.webp",
+  "final top hero14.webp",
+  "final top hero15.webp",
 ].map((filename, index) => ({
   id: `top-hero-final-${index + 1}`,
   alt: `Featured hero painting ${index + 1}`,
