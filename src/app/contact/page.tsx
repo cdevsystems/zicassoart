@@ -241,7 +241,6 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               <h2 className="mt-6 text-[0.82rem] font-semibold uppercase tracking-[0.22em]">
                 {method.title}
               </h2>
-              <p className="mt-4 text-base text-[var(--ink)]/72">{method.primary}</p>
               {method.href ? (
                 <Link
                   href={method.href}
