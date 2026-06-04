@@ -21,6 +21,8 @@ export type CatalogSpread = {
 
 const paintingAssetBaseUrl = "https://assets.zicassoart.com/paintings";
 const topHeroAssetBaseUrl = "https://assets.zicassoart.com/top%20hero%20final%20webp";
+const transparentPaintingAssetBaseUrl =
+  "https://assets.zicassoart.com/paintings%20without%20background";
 
 export const paintings: Painting[] = [
   {
@@ -224,3 +226,29 @@ export const catalogSpreads: CatalogSpread[] = [
     pageImages: [],
   },
 ];
+
+export const transparentFeaturedPaintings: PaintingImage[] = [
+  ["a-lovely-morning", "A Lovely Morning", "A Lovely Morning.webp"],
+  ["blowing-of-the-shofor", "Blowing Of The Shofor", "Blowing Of The Shofor.webp"],
+  ["dancing-chasidim", "Dancing Chasidim", "Dancing Chasidim.webp"],
+  ["krias-yam-suf", "Krias Jam Suf", "Krias Jam Suf.webp"],
+  ["prayers-at-the-koisel", "Prayers At The Koisel", "Prayers At The koisel.webp"],
+  ["fruits-of-bikurim", "The Fruits Of Bikurim", "The Fruits Of Bikurim.webp"],
+  ["smell-of-sunflowers", "The Smell Of Sunflowers", "The Smell Of Sunflowers.webp"],
+  [
+    "yerusalem-we-are-waiting-for",
+    "The Yerusalem We Are Waiting For",
+    "The yerusalem we are waiting for .webp",
+  ],
+  ["torah-hu-chayeinu", "Torah Hu Chayeinu", "Torah Hu Chayeinu.webp"],
+  ["vintage-airballoon", "Vintage Airballoon", "Vintage Airballoon.webp"],
+  ["moment-of-candlelighting", "Moment Of Candlelighting", "moment of candlelighting.webp"],
+  ["mount-sinai-good", "Mount Sinai Good", "mount sinai good .webp"],
+  ["portrait", "Portrait", "portrait.webp"],
+  ["snowy-koisel", "Snowy Koisel", "snowy koisel .webp"],
+  ["light-of-our-life", "The Light Of Our Life", "the light of our life.webp"],
+].map(([id, title, filename]) => ({
+  id: `transparent-${id}`,
+  alt: `${title} painting`,
+  src: `${transparentPaintingAssetBaseUrl}/${encodeURIComponent(filename)}`,
+}));

@@ -53,6 +53,7 @@ export function ElegantSlideshow({
               alt={slide.alt}
               fill
               unoptimized
+              preload
               sizes="(min-width: 1280px) 42vw, (min-width: 768px) 48vw, 92vw"
               className={imageClassName}
             />

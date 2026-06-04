@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ElegantSlideshow } from "@/components/elegant-slideshow";
-import { heroPaintingSlides, paintings } from "@/lib/art-content";
+import { heroPaintingSlides } from "@/lib/art-content";
 
 const navItems = [
   { label: "Collection", href: "/collection" },
@@ -9,18 +9,27 @@ const navItems = [
   { label: "Contact", href: "/contact" },
 ];
 
-const featuredPaintingGroups = [
-  paintings.slice(0, 3),
-  paintings.slice(3, 6),
-  paintings.slice(6, 9),
-  [...paintings.slice(9), paintings[0]],
-];
-
-const featuredArtworkFrames = [
-  "h-[270px] w-[275px]",
-  "h-[270px] w-[275px]",
-  "h-[270px] w-[295px]",
-  "h-[270px] w-[275px]",
+const selectedWorks = [
+  {
+    id: "selected-work-1",
+    src: "/home/selected-work-1.jpg",
+    alt: "Selected Zicasso artwork in warm gold and blue tones",
+  },
+  {
+    id: "selected-work-2",
+    src: "/home/selected-work-2.jpg",
+    alt: "Selected Zicasso artwork with expressive Judaica imagery",
+  },
+  {
+    id: "selected-work-3",
+    src: "/home/selected-work-3.jpg",
+    alt: "Selected Zicasso artwork with a refined interior feeling",
+  },
+  {
+    id: "selected-work-4",
+    src: "/home/selected-work-4.jpg",
+    alt: "Selected Zicasso artwork with painterly golden detail",
+  },
 ];
 
 export default function Home() {
@@ -35,7 +44,7 @@ export default function Home() {
                 alt="Zahavah Fine Art"
                 width={520}
                 height={347}
-                priority
+                preload
                 className="absolute left-1/2 top-1/2 w-[260px] max-w-none -translate-x-1/2 -translate-y-1/2"
               />
             </span>
@@ -102,53 +111,76 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[var(--ivory)] px-6 py-[4.5rem] sm:px-10 lg:px-[4.5rem]">
-        <div className="mx-auto max-w-[1320px]">
-          <div className="mb-8 text-center">
-            <p className="mb-4 text-[0.76rem] uppercase tracking-[0.24em] text-[var(--gold)]">
-              Featured Artworks
-            </p>
-            <h2 className="font-serif text-3xl leading-tight sm:text-4xl">
-              Curated pieces for inspired living.
-            </h2>
+      <section
+        id="selected-works"
+        className="selected-works-gallery relative w-full overflow-hidden px-6 py-[90px] sm:px-10"
+      >
+        <div className="relative mx-auto max-w-[1320px]">
+          <p className="mb-10 text-center text-[11px] uppercase tracking-[0.35em] text-[#b49467]">
+            Selected Works
+          </p>
+
+          <div className="grid gap-y-16 md:grid-cols-2 md:gap-x-16 xl:grid-cols-4 xl:gap-x-[72px]">
+            {selectedWorks.map((work) => (
+              <a
+                key={work.src}
+                href={`#${work.id}`}
+                className="selected-work-image block"
+                aria-label="Open selected artwork in enlarged view"
+              >
+                <Image
+                  src={work.src}
+                  alt={work.alt}
+                  width={6732}
+                  height={4961}
+                  sizes="(min-width: 1280px) 290px, (min-width: 768px) 45vw, 92vw"
+                  className="h-auto w-full object-contain"
+                />
+              </a>
+            ))}
           </div>
 
-          <div className="flex flex-wrap items-end justify-center gap-x-12 gap-y-12 xl:flex-nowrap 2xl:gap-x-16">
-            {featuredPaintingGroups.map((group, index) => {
-              const slides = group.flatMap((item) => item.images);
-
-              return (
-                <article
-                  key={group.map((item) => item.slug).join("-")}
-                  className="group flex min-h-[290px] shrink-0 items-end justify-center"
-                >
-                  <div className="relative flex h-full items-end justify-center">
-                    <ElegantSlideshow
-                      className={`${featuredArtworkFrames[index]} featured-artwork-feather max-w-full transition duration-500 ease-out group-hover:-translate-y-2 group-hover:drop-shadow-[0_18px_26px_rgba(74,52,35,0.12)]`}
-                      slides={slides}
-                      interval={5400 + index * 450}
-                    />
-                    <span
-                      className="absolute -bottom-5 left-1/2 h-px w-20 -translate-x-1/2 bg-[var(--gold)]/35 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-
-          <div className="mt-10 flex justify-center">
+          <div className="mt-14 flex justify-center">
             <a
               href="/collection"
-              className="inline-flex h-[3.25rem] min-w-[260px] items-center justify-center gap-8 border border-[var(--gold)] px-8 text-[0.72rem] uppercase tracking-[0.18em]"
+              className="selected-works-cta inline-flex items-center justify-center gap-5 pb-2 text-[14px] font-medium uppercase tracking-[0.18em] text-[#6c5844]"
             >
-              <span>View All Artworks</span>
+              <span>Discover The Full Collection</span>
               <span aria-hidden="true">-&gt;</span>
             </a>
           </div>
         </div>
       </section>
+
+      {selectedWorks.map((work) => (
+        <div
+          key={`${work.id}-lightbox`}
+          id={work.id}
+          className="selected-work-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Enlarged selected artwork"
+        >
+          <a
+            href="#selected-works"
+            className="selected-work-lightbox-backdrop"
+            aria-label="Close enlarged artwork"
+          />
+          <a href="#selected-works" className="selected-work-lightbox-close">
+            Close
+          </a>
+          <div className="selected-work-lightbox-frame">
+            <Image
+              src={work.src}
+              alt={work.alt}
+              width={6732}
+              height={4961}
+              sizes="96vw"
+              className="h-auto max-h-[86vh] w-auto max-w-[92vw] object-contain"
+            />
+          </div>
+        </div>
+      ))}
     </main>
   );
 }

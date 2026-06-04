@@ -44,8 +44,6 @@ function ArrowIcon({ direction }: { direction: "left" | "right" }) {
 
 export default function CollectionPage() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [isZoomed, setIsZoomed] = useState(false);
-  const [zoomLevel, setZoomLevel] = useState(1.6);
   const activePage = cataloguePages[currentPage - 1];
 
   const previousPage = () => {
@@ -57,6 +55,19 @@ export default function CollectionPage() {
   };
 
   useEffect(() => {
+    const preloadLinks = cataloguePages.map((page) => {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = page.src;
+      document.head.appendChild(link);
+
+      const image = new window.Image();
+      image.src = page.src;
+
+      return link;
+    });
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowLeft") {
         previousPage();
@@ -65,21 +76,15 @@ export default function CollectionPage() {
       if (event.key === "ArrowRight") {
         nextPage();
       }
-
-      if (event.key === "Escape" && isZoomed) {
-        setIsZoomed(false);
-      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
 
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isZoomed]);
-
-  const openZoom = () => {
-    setZoomLevel(1.6);
-    setIsZoomed(true);
-  };
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      preloadLinks.forEach((link) => link.remove());
+    };
+  }, []);
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#eaded1] text-[#4a3423]">
@@ -92,7 +97,7 @@ export default function CollectionPage() {
                 alt="Zahavah Fine Art"
                 width={520}
                 height={347}
-                priority
+                preload
                 className="absolute left-1/2 top-1/2 w-[260px] max-w-none -translate-x-1/2 -translate-y-1/2"
               />
             </span>
@@ -118,7 +123,7 @@ export default function CollectionPage() {
         </div>
       </header>
 
-      <section className="collection-atmosphere relative flex min-h-[calc(100vh-5.5rem)] flex-col items-center justify-center px-1 py-2 sm:px-4 lg:px-10">
+      <section className="collection-atmosphere relative flex min-h-[calc(100vh-5.5rem)] flex-col items-center justify-center px-1 py-3 sm:px-3 lg:px-5">
         <button
           type="button"
           onClick={previousPage}
@@ -137,31 +142,19 @@ export default function CollectionPage() {
           <ArrowIcon direction="right" />
         </button>
 
-        <div className="group relative aspect-[2.35/1] w-[min(96vw,1760px)]">
+        <div className="relative aspect-[2.35/1] w-[min(99vw,1920px)]">
           <Image
             key={activePage.src}
             src={activePage.src}
             alt={`${activePage.title} catalogue page`}
             fill
-            priority={currentPage === 1}
-            sizes="96vw"
+            preload={currentPage === 1}
+            sizes="99vw"
             className="catalogue-page-image object-contain drop-shadow-[0_30px_58px_rgba(74,52,35,0.22)]"
           />
-          <button
-            type="button"
-            onClick={openZoom}
-            className="absolute right-[7%] top-[7%] z-10 flex h-12 items-center gap-3 rounded-full border border-[#8d735f]/30 bg-[#fffaf5]/88 px-5 text-[0.68rem] uppercase tracking-[0.18em] text-[#5b3f2a] opacity-0 shadow-[0_12px_28px_rgba(74,52,35,0.16)] backdrop-blur-sm transition duration-300 hover:bg-white group-hover:opacity-100"
-            aria-label={`Zoom ${activePage.title}`}
-          >
-            <span className="relative block h-4 w-4" aria-hidden="true">
-              <span className="absolute inset-0 rounded-full border border-current" />
-              <span className="absolute -bottom-1 -right-1 h-[7px] w-px rotate-[-45deg] bg-current" />
-            </span>
-            Zoom
-          </button>
         </div>
 
-        <div className="mt-10 w-[min(70vw,760px)] text-center">
+        <div className="mt-7 w-[min(70vw,760px)] text-center sm:mt-8">
           <div className="mx-auto mb-2 h-px overflow-hidden bg-[#9f8c7b]/34">
             <div
               className="h-full bg-[#8a5b35] transition-all duration-500 ease-out"
@@ -184,64 +177,6 @@ export default function CollectionPage() {
           </div>
         </div>
       </section>
-
-      {isZoomed ? (
-        <div
-          className="fixed inset-0 z-50 bg-[#2f241d]/82 backdrop-blur-md"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${activePage.title} zoomed catalogue page`}
-        >
-          <button
-            type="button"
-            onClick={() => setIsZoomed(false)}
-            className="absolute right-6 top-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-white/12 text-3xl leading-none text-white transition hover:bg-white/20"
-            aria-label="Close zoom view"
-          >
-            ×
-          </button>
-
-          <div className="absolute left-1/2 top-6 flex -translate-x-1/2 items-center gap-3 rounded-full border border-white/22 bg-white/12 px-3 py-2 text-white shadow-[0_14px_34px_rgba(0,0,0,0.22)] backdrop-blur-md">
-            <button
-              type="button"
-              onClick={() => setZoomLevel((level) => Math.max(1, Number((level - 0.25).toFixed(2))))}
-              className="flex h-9 w-9 items-center justify-center rounded-full text-2xl leading-none transition hover:bg-white/18"
-              aria-label="Zoom out"
-            >
-              −
-            </button>
-            <span className="min-w-16 text-center text-[0.68rem] uppercase tracking-[0.16em]">
-              {Math.round(zoomLevel * 100)}%
-            </span>
-            <button
-              type="button"
-              onClick={() => setZoomLevel((level) => Math.min(3, Number((level + 0.25).toFixed(2))))}
-              className="flex h-9 w-9 items-center justify-center rounded-full text-2xl leading-none transition hover:bg-white/18"
-              aria-label="Zoom in"
-            >
-              +
-            </button>
-          </div>
-
-          <div className="flex h-full overflow-auto px-6 pb-10 pt-24">
-            <div
-              className="relative m-auto shrink-0"
-              style={{
-                height: `${92 * zoomLevel}vh`,
-                width: `${96 * zoomLevel}vw`,
-              }}
-            >
-              <Image
-                src={activePage.src}
-                alt={`${activePage.title} catalogue page enlarged`}
-                fill
-                sizes={`${Math.round(96 * zoomLevel)}vw`}
-                className="object-contain drop-shadow-[0_32px_70px_rgba(0,0,0,0.34)]"
-              />
-            </div>
-          </div>
-        </div>
-      ) : null}
     </main>
   );
 }
