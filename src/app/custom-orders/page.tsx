@@ -10,13 +10,23 @@ const navItems = [
 
 function UploadIcon() {
   return (
-    <span aria-hidden="true" className="relative block h-16 w-[4.5rem] text-[var(--gold)]">
-      <span className="absolute bottom-3 left-1/2 h-10 w-px -translate-x-1/2 bg-current" />
-      <span className="absolute left-[30px] top-4 h-3.5 w-3.5 rotate-45 border-l border-t border-current" />
-      <span className="absolute left-0 top-4 h-8 w-[4.5rem] rounded-full border border-current" />
-      <span className="absolute -left-1 top-8 h-6 w-8 rounded-l-full border-l border-t border-current bg-[#fff8ef]" />
-      <span className="absolute right-0 top-8 h-6 w-8 rounded-r-full border-r border-t border-current bg-[#fff8ef]" />
-    </span>
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 80 64"
+      className="h-16 w-20 text-[var(--gold)]"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.15"
+    >
+      <path d="M24.5 44.5H18.8c-7.2 0-13-5.4-13-12.1 0-6.4 5.3-11.7 12-12.1 2.7-8.2 10.8-13.9 20.2-13.9 10.5 0 19.2 7.1 20.7 16.3h1.7c7.6 0 13.8 5.6 13.8 12.4s-6.2 12.4-13.8 12.4H55.2" />
+      <path d="M40 50.8V23.3" />
+      <path d="m29.8 33.1 10.2-10 10.2 10" />
+      <path d="M27.8 55.5h24.4" />
+      <path d="M14.5 51.3c3.2 3 7.5 4.8 12.4 4.8" opacity="0.55" />
+      <path d="M53.1 56.1c4.7 0 9-1.7 12.1-4.6" opacity="0.55" />
+    </svg>
   );
 }
 
