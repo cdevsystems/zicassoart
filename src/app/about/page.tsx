@@ -1,5 +1,15 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "About Zahavah Fasten",
+  description:
+    "Learn about Zahavah Fasten, the European-trained artist behind Zicasso Art and its refined Judaica paintings.",
+  alternates: {
+    canonical: "/about",
+  },
+};
 
 const navItems = [
   { label: "Collection", href: "/collection" },

@@ -1,5 +1,15 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Custom Judaica Artwork",
+  description:
+    "Request a bespoke Zicasso Art commission, hand-painted to reflect your story, space, colors, and Judaica themes.",
+  alternates: {
+    canonical: "/custom-orders",
+  },
+};
 
 const navItems = [
   { label: "Collection", href: "/collection" },

@@ -1,6 +1,16 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { ElegantSlideshow } from "@/components/elegant-slideshow";
 import { heroPaintingSlides } from "@/lib/art-content";
+
+export const metadata: Metadata = {
+  title: "Fine Judaica Art for Meaningful Interiors",
+  description:
+    "Explore Zicasso Art, a curated collection of original Judaica paintings and custom fine-art pieces by Zahavah Fasten.",
+  alternates: {
+    canonical: "/",
+  },
+};
 
 const navItems = [
   { label: "Collection", href: "/collection" },

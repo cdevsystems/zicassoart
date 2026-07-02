@@ -1,5 +1,15 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Contact Zicasso Art to ask about original paintings, Judaica artwork, and custom fine-art commissions.",
+  alternates: {
+    canonical: "/contact",
+  },
+};
 
 const navItems = [
   { label: "Collection", href: "/collection" },
